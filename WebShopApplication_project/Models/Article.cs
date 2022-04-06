@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,24 +18,24 @@ namespace WebShopApplication_project.Models
         public string Name { get; set; }
         [Required]
         [MaxLength(250)]
-        public double Price { get; set; }
+        public string Price { get; set; }
         [Required]
         [MaxLength(2000)]
         public string Description { get; set; }
         [MaxLength(50)]
-        public double Hight { get; set; }
+        public string Hight { get; set; }
         [MaxLength(50)]
-        public double Whith { get; set; }
+        public string Whith { get; set; }
         [MaxLength(50)]
-        public double Depth { get; set; }
+        public string Depth { get; set; }
         [MaxLength(50)]
-        public double NetWweight { get; set; }
+        public string NetWweight { get; set; }
         [MaxLength(50)]
-        public double GrossWeight { get; set; }
+        public string GrossWeight { get; set; }
         public List<Media> Media { get; set; }
         [Required]
         public DateTime DateTimeItemCreated { get; set; }
         public DateTime DateTimeItemUpdated { get; set; }
-        public int CategoryId { get; set; }
+        public List<Category> Categorys { get; set; }
     }
 }

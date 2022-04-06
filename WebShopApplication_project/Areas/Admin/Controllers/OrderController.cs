@@ -47,6 +47,16 @@ namespace WebShopApplication_project.Areas.Admin.Controllers
         // GET: Admin/Order/Create
         public IActionResult Create()
         {
+            //TODO: Search in selectlist
+
+            var articlas = _context.Articles.Select(a => new SelectListItem()
+            {
+                Text = ($"ArticleNr: {a.ArticleNumber} Name: {a.Name}").ToString()
+                
+            }).ToList();
+            ViewBag.Article = articlas;
+
+            
             return View();
         }
 
@@ -63,6 +73,7 @@ namespace WebShopApplication_project.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(order);
         }
 
@@ -150,5 +161,6 @@ namespace WebShopApplication_project.Areas.Admin.Controllers
         {
             return _context.Orders.Any(e => e.ID == id);
         }
+
     }
 }

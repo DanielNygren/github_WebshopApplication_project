@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebShopApplication_project.Models
 {
+
     public class Category
     {
         public int ID { get; set; }
@@ -17,7 +18,6 @@ namespace WebShopApplication_project.Models
         [MaxLength(2000)]
         public string Description { get; set; }
         public string ThumbnailImagePath { get; set; }
-        [ForeignKey("CategoryId")]
         public ICollection<Article> Articles { get; set; }
 
     }

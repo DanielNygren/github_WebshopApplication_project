@@ -14,5 +14,7 @@ namespace WebShopApplication_project.Models
         [MaxLength(250)]
         public int Saldo { get; set; }
         public DateTime DateTimeInverse { get; set; }
+
+        public StockLocation StockLocation { get; set; }
     }
 }

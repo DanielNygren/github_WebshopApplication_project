@@ -1,5 +1,6 @@
 ﻿@model WebShopApplication_project.Models.Article
 
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -23,6 +24,16 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Categorys" class="control-label"></label>
+                <select name="category-select-list" asp-for="Categorys">
+                    @foreach (var x in ((IEnumerable<SelectListItem>)ViewBag.CategoryList))
+                    {
+                        <option value="@x.Value">@x.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Categorys" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
@@ -34,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Hight" class="control-label"></label>
-                <input asp-for="Hight" class="form-control" />
+                <input type="number" asp-for="Hight" class="form-control" />
                 <span asp-validation-for="Hight" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -56,20 +67,6 @@
                 <label asp-for="GrossWeight" class="control-label"></label>
                 <input asp-for="GrossWeight" class="form-control" />
                 <span asp-validation-for="GrossWeight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateTimeItemCreated" class="control-label"></label>
-                <input asp-for="DateTimeItemCreated" class="form-control" />
-                <span asp-validation-for="DateTimeItemCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateTimeItemUpdated" class="control-label"></label>
-                <input asp-for="DateTimeItemUpdated" class="form-control" />
-                <span asp-validation-for="DateTimeItemUpdated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

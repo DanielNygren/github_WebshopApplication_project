@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebShopApplication_project.Data;
 
 namespace WebShopApplication_project.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220209094334_CustomTablesupdate")]
+    partial class CustomTablesupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,43 +281,42 @@ namespace WebShopApplication_project.Data.Migrations
                     b.Property<DateTime>("DateTimeItemUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Depth")
+                    b.Property<double>("Depth")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("float");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
 
-                    b.Property<string>("GrossWeight")
+                    b.Property<double>("GrossWeight")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("float");
 
-                    b.Property<string>("Hight")
+                    b.Property<double>("Hight")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("NetWweight")
+                    b.Property<double>("NetWweight")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("float");
 
                     b.Property<int?>("OrderID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
+                    b.Property<double>("Price")
                         .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("float");
 
-                    b.Property<string>("Whith")
+                    b.Property<double>("Whith")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("float");
 
                     b.HasKey("ID");
 
@@ -473,28 +474,11 @@ namespace WebShopApplication_project.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("int");
 
-                    b.Property<int?>("StockLocationID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
                     b.HasIndex("ArticleID");
 
-                    b.HasIndex("StockLocationID");
-
                     b.ToTable("Stocks");
-                });
-
-            modelBuilder.Entity("WebShopApplication_project.Models.StockLocation", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("StockLocation");
                 });
 
             modelBuilder.Entity("ArticleCategory", b =>
@@ -605,13 +589,7 @@ namespace WebShopApplication_project.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ArticleID");
 
-                    b.HasOne("WebShopApplication_project.Models.StockLocation", "StockLocation")
-                        .WithMany()
-                        .HasForeignKey("StockLocationID");
-
                     b.Navigation("Article");
-
-                    b.Navigation("StockLocation");
                 });
 
             modelBuilder.Entity("WebShopApplication_project.Models.Article", b =>
